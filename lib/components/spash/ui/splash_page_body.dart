@@ -19,6 +19,8 @@ class _SplashPageBodyState extends State<SplashPageBody> {
       body: BlocListener<SplashBloc, SplashState>(
         listener: (context, state) {
           if (state.isSuccess) {
+            context.goNamed('main_page');
+          } else {
             context.goNamed('login_page');
           }
         },
