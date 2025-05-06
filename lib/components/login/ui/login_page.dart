@@ -1,4 +1,4 @@
-import 'package:chat_app/components/firebase_api/firebase_api.dart';
+import 'package:chat_app/components/firebase_api/firebase_auth_api.dart';
 import 'package:chat_app/components/login/bloc/login_bloc.dart';
 import 'package:chat_app/components/login/ui/login_page_body.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,8 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginBloc(firebaseApi: context.read<FirebaseApi>()),
+      create:
+          (context) => LoginBloc(firebaseApi: context.read<FirebaseAuthApi>()),
       child: LoginPageBody(),
     );
   }

@@ -1,15 +1,15 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:chat_app/components/firebase_api/firebase_api.dart';
+import 'package:chat_app/components/firebase_api/firebase_auth_api.dart';
 import 'package:equatable/equatable.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final FirebaseApi _firebaseApi;
-  LoginBloc({required FirebaseApi firebaseApi})
+  final FirebaseAuthApi _firebaseApi;
+  LoginBloc({required FirebaseAuthApi firebaseApi})
     : _firebaseApi = firebaseApi,
       super(LoginState()) {
     on<LoginWithEmailEvent>(_onLoginWithEmail);
