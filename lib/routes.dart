@@ -1,3 +1,4 @@
+import 'package:chat_app/components/chat/ui/chat_page.dart';
 import 'package:chat_app/components/login/ui/login_page.dart';
 import 'package:chat_app/components/main/ui/main_page.dart';
 import 'package:chat_app/components/register/ui/register_page.dart';
@@ -24,8 +25,20 @@ final GoRouter routes = GoRouter(
         ),
         GoRoute(
           path: 'main_page',
-          name: 'main_pag',
+          name: 'main_page',
           builder: (context, state) => MainPage(),
+          routes: [
+            GoRoute(
+              path: 'chat_page',
+              name: 'chat_page',
+              builder: (context, state) {
+                final extra = state.extra as Map<String, dynamic>;
+                final String userEmail = extra['user_email']! as String;
+                final String userId = extra['user_id']! as String;
+                return ChatPage(userEmail: userEmail, userId: userId);
+              },
+            ),
+          ],
         ),
       ],
     ),
