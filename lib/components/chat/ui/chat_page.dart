@@ -14,10 +14,11 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create:
-          (context) =>
-              ChatBloc(firebaseChatApi: context.read<FirebaseChatApi>())
-                ..add(ChatInitialEvent())
-                ..add(ChatInitialEvent()),
+          (context) => ChatBloc(
+            firebaseChatApi: context.read<FirebaseChatApi>(),
+            userId: userId,
+            userEmail: userEmail,
+          )..add(ChatInitialEvent()),
       child: ChatPageBody(userEmail: userEmail, userId: userId),
     );
   }

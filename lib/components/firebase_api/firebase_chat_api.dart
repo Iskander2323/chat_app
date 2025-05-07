@@ -7,6 +7,8 @@ class FirebaseChatApi {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+  String? get currentUserId => _firebaseAuth.currentUser?.uid;
+
   Stream<List<UserModel>> getUsers() {
     return _firebaseFirestore.collection('users').snapshots().map((snapshot) {
       return snapshot.docs.map((doc) => UserModel.fromMap(doc.data())).toList();
@@ -38,8 +40,9 @@ class FirebaseChatApi {
         .add(messageModel.toMap());
   }
 
-  Stream<QuerySnapshot> getMessages(String userId, otherUserId) {
-    List<String> ids = [userId, otherUserId];
+  Stream<QuerySnapshot> getMessages(String userId) {
+    final String currentUserId = _firebaseAuth.currentUser!.uid;
+    List<String> ids = [userId, currentUserId];
     ids.sort();
     final String chatRoomId = ids.join('_');
     return _firebaseFirestore
@@ -47,6 +50,7 @@ class FirebaseChatApi {
         .doc(chatRoomId)
         .collection('messages')
         .orderBy('timestamp', descending: true)
-        .snapshots();
+        .snapshots()
+        .distinct();
   }
 }
