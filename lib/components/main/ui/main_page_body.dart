@@ -46,7 +46,6 @@ class _MainPageBodyState extends State<MainPageBody> {
                   child: Column(
                     children: [
                       Expanded(
-                        // Міне, шешім осы
                         child:
                             state.userList.isNotEmpty
                                 ? ListView.builder(
@@ -55,6 +54,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                                     return Container(
                                       margin: EdgeInsets.only(bottom: 10),
                                       child: ListTile(
+                                        minTileHeight: 65,
                                         title: Text(
                                           '${state.userList[index].name}',
                                         ),
