@@ -13,6 +13,7 @@ class FirebaseAuthApi {
   }
 
   Future<UserCredential> register({
+    required String name,
     required String email,
     required String password,
   }) async {
@@ -26,6 +27,7 @@ class FirebaseAuthApi {
           .doc(userCredential.user?.uid)
           .set({
             'email': email,
+            'name': name,
             'id': userCredential.user?.uid,
             'createdAt': DateTime.now(),
           });

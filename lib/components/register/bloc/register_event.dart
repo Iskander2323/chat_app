@@ -9,11 +9,12 @@ sealed class RegisterEvent extends Equatable {
 
 class RegisterNewAccountEvent extends RegisterEvent {
   const RegisterNewAccountEvent({
+    required this.name,
     required this.email,
     required this.password,
     required this.confirmPassword,
   });
-
+  final String name;
   final String email;
   final String password;
   final String confirmPassword;

@@ -27,6 +27,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     try {
       if (event.password == event.confirmPassword) {
         await _firebaseApi.register(
+          name: event.name,
           email: event.email,
           password: event.password,
         );

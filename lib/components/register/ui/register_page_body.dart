@@ -14,6 +14,7 @@ class RegisterPageBody extends StatefulWidget {
 }
 
 class _RegisterPageBodyState extends State<RegisterPageBody> {
+  TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
@@ -61,6 +62,13 @@ class _RegisterPageBodyState extends State<RegisterPageBody> {
                 Container(
                   margin: EdgeInsets.only(top: 15),
                   child: CustomTextFormField(
+                    controller: _nameController,
+                    hintText: 'Name',
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 15),
+                  child: CustomTextFormField(
                     controller: _emailController,
                     hintText: 'Login',
                   ),
@@ -88,6 +96,7 @@ class _RegisterPageBodyState extends State<RegisterPageBody> {
                     context.read<RegisterBloc>().add(
                       RegisterNewAccountEvent(
                         email: _emailController.text,
+                        name: _nameController.text,
                         password: _passwordController.text,
                         confirmPassword: _confirmPasswordController.text,
                       ),
