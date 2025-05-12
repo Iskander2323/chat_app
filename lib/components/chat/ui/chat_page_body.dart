@@ -7,10 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ChatPageBody extends StatefulWidget {
   const ChatPageBody({
     super.key,
+    required this.name,
     required this.userEmail,
     required this.userId,
   });
-
+  final String name;
   final String userEmail;
   final String userId;
 
@@ -26,7 +27,7 @@ class _ChatPageBodyState extends State<ChatPageBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.userEmail)),
+      appBar: AppBar(title: Text(widget.name)),
       body: BlocListener<ChatBloc, ChatState>(
         listenWhen:
             (previous, current) =>

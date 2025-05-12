@@ -52,23 +52,36 @@ class _MainPageBodyState extends State<MainPageBody> {
                                 ? ListView.builder(
                                   itemCount: state.userList.length,
                                   itemBuilder: (context, index) {
-                                    return ListTile(
-                                      title: Text(
-                                        '${state.userList[index].email}',
-                                      ),
-                                      onTap:
-                                          () => context.goNamed(
-                                            'chat_page',
-                                            extra: {
-                                              'user_id':
-                                                  state.userList[index].id,
-                                              'user_email':
-                                                  state.userList[index].email,
-                                            },
+                                    return Container(
+                                      margin: EdgeInsets.only(bottom: 10),
+                                      child: ListTile(
+                                        title: Text(
+                                          '${state.userList[index].name}',
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                            color: Colors.grey,
+                                            width: 1,
                                           ),
-                                      subtitle: Text('Subtitle $index'),
-                                      leading: Icon(Icons.chat),
-                                      trailing: Icon(Icons.arrow_forward),
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                        ),
+                                        onTap:
+                                            () => context.goNamed(
+                                              'chat_page',
+                                              extra: {
+                                                'user_id':
+                                                    state.userList[index].id,
+                                                'user_email':
+                                                    state.userList[index].email,
+                                                'user_name':
+                                                    state.userList[index].name,
+                                              },
+                                            ),
+                                        leading: Icon(Icons.person),
+                                        trailing: Icon(Icons.chat),
+                                      ),
                                     );
                                   },
                                 )

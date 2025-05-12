@@ -35,7 +35,12 @@ final GoRouter routes = GoRouter(
                 final extra = state.extra as Map<String, dynamic>;
                 final String userEmail = extra['user_email']! as String;
                 final String userId = extra['user_id']! as String;
-                return ChatPage(userEmail: userEmail, userId: userId);
+                final String name = extra['user_name']! as String;
+                return ChatPage(
+                  userEmail: userEmail,
+                  name: name,
+                  userId: userId,
+                );
               },
             ),
           ],

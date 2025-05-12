@@ -5,8 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatPage extends StatelessWidget {
-  const ChatPage({super.key, required this.userEmail, required this.userId});
-
+  const ChatPage({
+    super.key,
+    required this.name,
+    required this.userEmail,
+    required this.userId,
+  });
+  final String name;
   final String userEmail;
   final String userId;
 
@@ -19,7 +24,7 @@ class ChatPage extends StatelessWidget {
             userId: userId,
             userEmail: userEmail,
           )..add(ChatInitialEvent()),
-      child: ChatPageBody(userEmail: userEmail, userId: userId),
+      child: ChatPageBody(userEmail: userEmail, name: name, userId: userId),
     );
   }
 }
