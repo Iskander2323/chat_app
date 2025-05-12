@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:chat_app/components/data/model/show_message.dart';
@@ -35,7 +36,9 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         message: event.message,
         receiverId: userId,
       );
-    } on Exception catch (e) {}
+    } on Exception catch (e) {
+      log(e.toString(), name: 'ChatBloc - _sendMessageEvent');
+    }
   }
 
   void _errorEvent(ErrorEvent event, Emitter<ChatState> emit) {
