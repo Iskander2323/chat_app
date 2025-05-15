@@ -27,6 +27,7 @@ class FirebaseChatApi {
       senderEmail: curredtUserEmail,
       receiverId: receiverId,
       message: message,
+      status: 'sent',
       timestamp: timestamp,
     );
 
