@@ -3,9 +3,11 @@ import 'package:chat_app/components/login/ui/login_page.dart';
 import 'package:chat_app/components/main/ui/main_page.dart';
 import 'package:chat_app/components/register/ui/register_page.dart';
 import 'package:chat_app/components/spash/ui/splash_page.dart';
+import 'package:chat_app/main.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter routes = GoRouter(
+  navigatorKey: navigatorKey,
   initialLocation: '/splash_page',
   routes: [
     GoRoute(

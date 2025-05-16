@@ -9,6 +9,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
 Future<void> handleBackgroundMessage(RemoteMessage message) async {
   log('Title: ${message.notification?.title}');
   log('body: ${message.notification?.body}');
@@ -20,7 +22,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final FirebaseAuthApi firebaseApi = FirebaseAuthApi();
   final FirebaseChatApi firebaseChatApi = FirebaseChatApi();
-  await FirebaseNotificationMessagingAPI().initialize();
+  await FirebaseNotificationMessagingAPI().initialize(navigatorKey);
   FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
 
   runApp(App(firebaseApi: firebaseApi, firebaseChatApi: firebaseChatApi));
